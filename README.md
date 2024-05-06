@@ -4,6 +4,8 @@
 ![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![nodejs](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 
+![Frame 421](https://github.com/wdwf/speak5languages/assets/28903617/311361da-3f8c-435f-a9a5-e4bc17896220)
+
 ## 💻 Descrição do Projeto
 
 Projeto para composição de plataforma de estudos.
