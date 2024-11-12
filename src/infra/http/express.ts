@@ -2,6 +2,7 @@ import "express-async-errors";
 import cors from "cors";
 import express from "express";
 import routes from "../../controller/routes";
+import "dotenv/config";
 
 const corsOptions = {
 	origin: process.env.CORS_URL,

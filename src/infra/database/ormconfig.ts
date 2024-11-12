@@ -1,21 +1,19 @@
 import "reflect-metadata";
 import * as dotenv from "dotenv";
 import { DataSource, type DataSourceOptions } from "typeorm";
+// import "dotenv/config"; //porque
 
-const path =
-	process.env.NODE_ENV === "production"
-		? ".env"
-		: `.env.${process.env.NODE_ENV}`;
+const path = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : ".env";
 dotenv.config({ path });
 
-const port = process.env.DB_PORT as unknown as number;
+const port = Number(process.env.DB_PORT) || 5432;
 
 const options: DataSourceOptions = {
 	type: "postgres",
 	host: process.env.DB_HOST,
 	port: port,
 	username: process.env.DB_USER,
-	password: process.env.DB_PASS,
+	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME,
 	synchronize: true,
 	dropSchema: !!process.env.DB_DROP,
