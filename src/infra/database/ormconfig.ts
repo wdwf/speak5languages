@@ -19,8 +19,8 @@ const options: DataSourceOptions = {
 	dropSchema: !!process.env.DB_DROP,
 	migrationsRun: !!process.env.DB_MIGRATION,
 
-	entities: [`${__dirname}/**/entities/*.{ts,js}`],
-	migrations: [`${__dirname}/**/migrations/*.{ts,js}`],
+	entities: [`${__dirname}/**/infra/database/entities/*.{ts,js}`],
+	migrations: [`${__dirname}/**/infra/database/migrations/*.{ts,js}`],
 };
 
 const AppDataSource = new DataSource(options);
