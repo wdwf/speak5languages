@@ -7,7 +7,9 @@
 		"dev": "ts-node-dev src/index.ts",
 		"build": "npx tsc && node ./dist/main.js",
 		"test": "npx tsc && jest ./dist",
-		"prepare": "husky"
+		"prepare": "husky",
+		"typeorm:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/infra/database/ormconfig.ts ./src/infra/database/migrations/default",
+		"typeorm:migrate": "typeorm-ts-node-commonjs  migration:run -d ./src/infra/database/ormconfig.ts"
 	},
 	"lint-staged": {
 		"*": [

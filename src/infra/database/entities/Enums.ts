@@ -1,12 +1,23 @@
 export enum Level {
 	BASIC = "basic",
-	Intermediary = "intermediary",
-	Advanced = "Advanced",
+	INTERMEDIARY = "intermediary",
+	ADVANCED = "Advanced",
+}
+
+export enum Category {
+	BASIC = "basic",
+	INTERMEDIARY = "intermediary",
+	ADVANCED = "Advanced",
 }
 
 export enum SituationStudent {
 	UNLOCKED = "unlocked",
 	LOCKED = "locked",
+}
+
+export enum StatusClass {
+	OPEN = "open",
+	CLOSED = "closed",
 }
 
 export enum TypeUser {

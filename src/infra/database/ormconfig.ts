@@ -1,7 +1,11 @@
 import "reflect-metadata";
 import * as dotenv from "dotenv";
 import { DataSource, type DataSourceOptions } from "typeorm";
-// import "dotenv/config"; //porque
+import { ClassEntity } from "./entities/ClassEntity";
+import { RegistrationEntity } from "./entities/RegistrationEntity";
+import { SignatureEntity } from "./entities/SignatureEntity";
+import { StudentProfileEntity } from "./entities/StudentProfileEntity";
+import { UserEntity } from "./entities/UserEntity";
 
 const path = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : ".env";
 dotenv.config({ path });
@@ -19,7 +23,14 @@ const options: DataSourceOptions = {
 	dropSchema: !!process.env.DB_DROP,
 	migrationsRun: !!process.env.DB_MIGRATION,
 
-	entities: [`${__dirname}/**/infra/database/entities/*.{ts,js}`],
+	// entities: [`${__dirname}/**/infra/database/entities/*.{ts,js}`],
+	entities: [
+		UserEntity,
+		StudentProfileEntity,
+		SignatureEntity,
+		RegistrationEntity,
+		ClassEntity,
+	],
 	migrations: [`${__dirname}/**/infra/database/migrations/*.{ts,js}`],
 };
 

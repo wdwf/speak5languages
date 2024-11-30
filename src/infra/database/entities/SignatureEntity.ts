@@ -3,60 +3,46 @@ import {
 	CreateDateColumn,
 	DeleteDateColumn,
 	Entity,
+	JoinColumn,
+	ManyToOne,
 	OneToMany,
 	OneToOne,
 	PrimaryColumn,
 	UpdateDateColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { ClassEntity } from "./ClassEntity";
-import { TypeUser } from "./Enums";
+import { Category, SituationStudent, StatusSignature } from "./Enums";
+import { RegistrationEntity } from "./RegistrationEntity";
 import { StudentProfileEntity } from "./StudentProfileEntity";
+import { UserEntity } from "./UserEntity";
 
-@Entity("users")
-export class UserEntity {
+@Entity("signatures")
+export class SignatureEntity {
 	@PrimaryColumn({
 		type: "uuid",
 	})
 	id: string;
 
 	@Column({
-		type: "varchar",
+		type: "date",
 	})
-	name: string;
+	startDate: Date;
 
 	@Column({
-		type: "varchar",
-		unique: true,
+		type: "date",
 	})
-	email: string;
-
-	@Column({
-		type: "varchar",
-	})
-	phone: string;
-
-	@Column({
-		type: "varchar",
-	})
-	password: string;
+	endDate: Date;
 
 	@Column({
 		type: "enum",
-		enum: TypeUser,
-		default: TypeUser.STUDENT,
+		enum: StatusSignature,
+		default: StatusSignature.ACTIVE,
 	})
-	type: TypeUser;
-
-	@OneToMany(
-		() => ClassEntity,
-		(classEntity) => classEntity.teacher,
-	)
-	classes: ClassEntity[];
+	status: StatusSignature;
 
 	@OneToOne(
 		() => StudentProfileEntity,
-		(studentProfileEntity) => studentProfileEntity.student,
+		(studentProfileEntity) => studentProfileEntity.signature,
 		{ cascade: true },
 	)
 	studentProfile: StudentProfileEntity;
