@@ -6,4 +6,6 @@ routes.get("/ping", (request: Request, response: Response) => {
 	return response.json("pong");
 });
 
+// routes.use(userRoutes);
+
 export default routes;

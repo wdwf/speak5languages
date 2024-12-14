@@ -1,34 +1,34 @@
 import type { Repository } from "typeorm";
-import User from "../../../core/entities/User";
-import type { userRepository } from "../../../core/repositories/UserRepository";
+import type User from "../../../core/entities/User";
+import type { IUserRepository } from "../../../core/repositories/IUserRepository";
 import { UserEntity } from "../entities/UserEntity";
+import { toDomain, toPersistence } from "../mappers/UserMapper";
 import AppDataSource from "../ormconfig";
 
-export default class userRepositoryTypeORM implements userRepository {
-	private UserRepository: Repository<UserEntity>;
+export default class userRepositoryTypeORM implements IUserRepository {
+	private ormUserRepository: Repository<UserEntity>;
 
 	constructor() {
-		this.UserRepository = AppDataSource.getRepository(UserEntity);
+		this.ormUserRepository = AppDataSource.getRepository(UserEntity);
 	}
 
-	async createUser(user: User): Promise<void> {
-		const userEntity = this.UserRepository.create(user);
-		await this.UserRepository.save(userEntity);
-		return;
+	async findByEmail(email: string): Promise<User | null> {
+		const entity = await this.ormUserRepository.findOneBy({ email });
+		return entity ? toDomain(entity) : null;
 	}
 
-	async getUserByEmail(email: string): Promise<User | null> {
-		const userEntity = await this.UserRepository.findOneBy({ email: email });
-		if (!userEntity) return null;
+	async findAll(): Promise<User[] | null> {
+		throw new Error("Method not implemented.");
+	}
 
-		//Talvez aqui entraria o uso do DTO?
-		return new User(
-			userEntity.id,
-			userEntity.name,
-			userEntity.email,
-			userEntity.phone,
-			userEntity.password,
-			userEntity.type,
-		);
+	async create(user: User): Promise<User> {
+		const entity = toPersistence(user);
+		const savedEntity = await this.ormUserRepository.create(entity);
+		// await this.ormUserRepository.save(userEntity);
+		return toDomain(savedEntity);
+	}
+
+	async delete(id: string): Promise<void> {
+		throw new Error("Method not implemented.");
 	}
 }
