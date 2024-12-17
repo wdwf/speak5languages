@@ -1,6 +1,6 @@
 import type { Repository } from "typeorm";
-import type User from "../../../core/entities/User";
-import type { IUserRepository } from "../../../core/repositories/IUserRepository";
+import type User from "../../../domain/entities/User";
+import type { IUserRepository } from "../../../domain/repositories/IUserRepository";
 import { UserEntity } from "../entities/UserEntity";
 import { toDomain, toPersistence } from "../mappers/UserMapper";
 import AppDataSource from "../ormconfig";

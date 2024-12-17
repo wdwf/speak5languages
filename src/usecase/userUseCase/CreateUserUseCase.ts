@@ -1,5 +1,5 @@
-import type User from "../../entities/User";
-import type { IUserRepository } from "../../repositories/IUserRepository";
+import type User from "../../domain/entities/User";
+import type { IUserRepository } from "../../domain/repositories/IUserRepository";
 
 interface CreateUserDTO {
 	name: string;

@@ -1,4 +1,4 @@
-import User from "../../../core/entities/User";
+import User from "../../../domain/entities/User";
 import { UserEntity } from "../entities/UserEntity";
 
 export function toDomain(entity: UserEntity): User {

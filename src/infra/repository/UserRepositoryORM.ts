@@ -1,5 +1,5 @@
-import type User from "../../core/entities/User";
-import type { IUserRepository } from "../../core/repositories/IUserRepository";
+import type User from "../../domain/entities/User";
+import type { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { UserEntity } from "../database/entities/UserEntity";
 import AppDataSource from "../database/ormconfig";
 
