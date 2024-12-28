@@ -1,31 +1,52 @@
-import { TypeUser } from "./Enums";
+import { v4 as uuid } from "uuid";
+
+export interface IUserProps {
+	id: string;
+	name: string;
+	email: string;
+	phone: string;
+	password: string;
+	type: string;
+}
 
 export default class User {
-	public id: string;
-	public name: string;
-	public email: string;
-	public phone: string;
-	public password: string;
-	public type: TypeUser;
+	id: string;
+	private constructor(private props: IUserProps) {}
 
-	constructor(
-		id: string,
+	public static create(
 		name: string,
 		email: string,
 		phone: string,
 		password: string,
-		type: TypeUser,
+		type: string,
 	) {
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
-		this.password = password;
-		this.type = type;
+		return new User({
+			id: uuid(),
+			name,
+			email,
+			phone,
+			password,
+			type,
+		});
 	}
 
-	// Método para verificar se o usuário é um estudante
-	public isStudent(): boolean {
-		return this.type === TypeUser.STUDENT;
+	public static with(props: IUserProps) {
+		return new User(props);
+	}
+
+	public get name() {
+		return this.props.name;
+	}
+
+	public get email() {
+		return this.props.email;
+	}
+
+	public get phone() {
+		return this.props.phone;
+	}
+
+	public get type() {
+		return this.props.type;
 	}
 }
