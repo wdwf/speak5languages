@@ -1,10 +1,9 @@
-import AppDataSource from "./infra/database/ormconfig";
-import app from "./infra/http/express";
+import { ApiExpress } from "./infra/api/express/api.express";
+import { CreateUserRoute } from "./infra/api/express/routes/user/createUser.express.route";
 
-AppDataSource.initialize().then(() => {
-	return app.listen(process.env.PORT, () => {
-		console.log(
-			`API iniciada. Acesse a rota http://localhost:${process.env.PORT}`,
-		);
-	});
-});
+function main() {
+	const port = 8000;
+	const api = ApiExpress.create([createRoute, listRoute]);
+}
+
+main();
